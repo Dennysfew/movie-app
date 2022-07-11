@@ -6,5 +6,8 @@ target 'Movie-app' do
   use_frameworks!
 
   # Pods for Movie-app
+pod 'FirebaseAnalytics'
+pod 'FirebaseAuth'
+pod 'FirebaseFirestore'
 
 end
