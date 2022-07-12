@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Login View Controller-->
+        <!--Sign In View Controller-->
         <scene sceneID="Mom-8N-uvJ">
             <objects>
-                <viewController storyboardIdentifier="signIn" useStoryboardIdentifierAsRestorationIdentifier="YES" id="k0a-pI-iCN" customClass="LoginViewController" customModule="Movie_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signIn" useStoryboardIdentifierAsRestorationIdentifier="YES" id="k0a-pI-iCN" customClass="SignInViewController" customModule="Movie_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CyV-OA-Dq5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -57,7 +57,7 @@
                                             <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="signInTapped:" destination="k0a-pI-iCN" eventType="touchUpInside" id="LSV-NC-tyx"/>
+                                            <action selector="signInTapped:" destination="k0a-pI-iCN" eventType="touchUpInside" id="WCH-DY-PFC"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bcz-pz-NP7">
@@ -68,7 +68,6 @@
                                             <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="signUpTapped:" destination="k0a-pI-iCN" eventType="touchUpInside" id="rEx-I3-tmS"/>
                                             <segue destination="QhX-MG-dbD" kind="presentation" modalPresentationStyle="fullScreen" id="ZBS-cM-FbP"/>
                                         </connections>
                                     </button>
@@ -82,6 +81,12 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                     </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RfH-iI-vel">
+                                        <rect key="frame" x="181" y="710.5" width="52.5" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" systemColor="systemRedColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.95592871904548216" blue="0.82602120438264759" alpha="0.40581264874793044" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -89,6 +94,7 @@
                                     <constraint firstItem="9Pd-8k-32x" firstAttribute="top" secondItem="TEp-n0-4Ft" secondAttribute="bottom" constant="45" id="Ala-eb-b0l"/>
                                     <constraint firstItem="cfg-Bd-IRT" firstAttribute="top" secondItem="9Pd-8k-32x" secondAttribute="bottom" constant="10" id="Dd4-HD-F3n"/>
                                     <constraint firstItem="9Pd-8k-32x" firstAttribute="leading" secondItem="Yeo-7l-PNc" secondAttribute="leading" constant="40" id="Euy-ib-Yqm"/>
+                                    <constraint firstItem="RfH-iI-vel" firstAttribute="top" secondItem="6bH-Zt-vZP" secondAttribute="bottom" constant="40" id="GUm-M1-pHp"/>
                                     <constraint firstAttribute="trailing" secondItem="cfg-Bd-IRT" secondAttribute="trailing" constant="40" id="JHE-xO-Id1"/>
                                     <constraint firstItem="TEp-n0-4Ft" firstAttribute="leading" secondItem="Yeo-7l-PNc" secondAttribute="leading" constant="40" id="McS-Ek-Jio"/>
                                     <constraint firstItem="6bH-Zt-vZP" firstAttribute="leading" secondItem="Yeo-7l-PNc" secondAttribute="leading" constant="55" id="S4a-fv-jp0"/>
@@ -101,6 +107,7 @@
                                     <constraint firstItem="4Zf-rL-EqF" firstAttribute="centerX" secondItem="Yeo-7l-PNc" secondAttribute="centerX" id="v34-Zo-dHU"/>
                                     <constraint firstItem="4Zf-rL-EqF" firstAttribute="centerX" secondItem="Yeo-7l-PNc" secondAttribute="centerX" id="vSs-gf-MZD"/>
                                     <constraint firstAttribute="trailing" secondItem="9Pd-8k-32x" secondAttribute="trailing" constant="36" id="vhW-qM-jDr"/>
+                                    <constraint firstItem="RfH-iI-vel" firstAttribute="centerX" secondItem="Yeo-7l-PNc" secondAttribute="centerX" id="xP6-UR-CJE"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -115,10 +122,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="OG1-WZ-57J"/>
                     <connections>
-                        <outlet property="email" destination="TEp-n0-4Ft" id="ijG-yS-6eI"/>
-                        <outlet property="password" destination="9Pd-8k-32x" id="TlI-AA-S7Z"/>
-                        <outlet property="signIn" destination="6bH-Zt-vZP" id="GUf-yE-xXx"/>
-                        <outlet property="signUp" destination="Bcz-pz-NP7" id="yy0-sh-5Kt"/>
+                        <outlet property="emailTextField" destination="TEp-n0-4Ft" id="P7u-Fn-f9l"/>
+                        <outlet property="label" destination="RfH-iI-vel" id="zRr-is-YRN"/>
+                        <outlet property="passwordTextField" destination="9Pd-8k-32x" id="8Nh-en-8K8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xah-jB-j4S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -205,7 +211,7 @@
                                             <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="signUpTapped:" destination="QhX-MG-dbD" eventType="touchUpInside" id="XaH-dE-W2J"/>
+                                            <action selector="signUpTapped:" destination="QhX-MG-dbD" eventType="touchUpInside" id="dKM-LE-zsl"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="26a-cm-wLm">
@@ -216,13 +222,12 @@
                                             <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="signInTapped:" destination="QhX-MG-dbD" eventType="touchUpInside" id="kie-Bd-LOY"/>
                                             <segue destination="k0a-pI-iCN" kind="presentation" modalPresentationStyle="fullScreen" id="oto-cx-Of4"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="errorLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H42-s2-0RG">
-                                        <rect key="frame" x="186.5" y="713" width="41" height="10"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                        <rect key="frame" x="182" y="713" width="50" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="0.99887412789999996" green="0.17488923670000001" blue="0.33298572900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -267,14 +272,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="CXQ-jm-aV4"/>
                     <connections>
-                        <outlet property="confirmedPasswordTextField" destination="hJF-E3-CXE" id="J52-8G-8GL"/>
-                        <outlet property="emailTextField" destination="2pz-vs-zoQ" id="9H1-j6-tZm"/>
-                        <outlet property="errorLabel" destination="H42-s2-0RG" id="ah2-1G-2wL"/>
-                        <outlet property="firstNameTextField" destination="1lP-H0-G6E" id="Nt3-Ra-RYM"/>
-                        <outlet property="lastNameTextField" destination="N6d-F5-ilv" id="OXL-IO-0Dy"/>
-                        <outlet property="passwordTextField" destination="oir-AR-yDU" id="Vlk-ml-Jkb"/>
-                        <outlet property="signIn" destination="26a-cm-wLm" id="z02-IK-P2g"/>
-                        <outlet property="signUp" destination="bg3-jO-1SO" id="Cno-gd-o6O"/>
+                        <outlet property="confirmedPasswordTextField" destination="hJF-E3-CXE" id="ngl-6M-U3n"/>
+                        <outlet property="emailTextField" destination="2pz-vs-zoQ" id="ZbK-1D-VUx"/>
+                        <outlet property="errorLabel" destination="H42-s2-0RG" id="Mfk-Dn-G7x"/>
+                        <outlet property="firstNameTextField" destination="1lP-H0-G6E" id="73l-qd-n0O"/>
+                        <outlet property="lastNameTextField" destination="N6d-F5-ilv" id="tBb-oc-sxK"/>
+                        <outlet property="passwordTextField" destination="oir-AR-yDU" id="TfV-Rn-Eia"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dUg-hc-L7J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -357,6 +360,9 @@
         </systemColor>
         <systemColor name="systemPurpleColor">
             <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
