@@ -437,6 +437,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SO6-Gp-G0U">
+                                <rect key="frame" x="354" y="47" width="50" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add"/>
+                                <connections>
+                                    <action selector="addButtonTapped:" destination="BNf-XI-kmB" eventType="touchUpInside" id="4LA-rY-ATZ"/>
+                                    <segue destination="vxv-tz-e6B" kind="presentation" modalPresentationStyle="fullScreen" id="SMk-DW-P1T"/>
+                                </connections>
+                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UCw-mA-RAU">
                                 <rect key="frame" x="0.0" y="631" width="414" height="200"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -506,6 +515,7 @@
                             <constraint firstItem="lbq-C6-4Kk" firstAttribute="top" secondItem="8AC-Iu-S2H" secondAttribute="bottom" constant="2" id="Qwe-3m-LpC"/>
                             <constraint firstAttribute="trailing" secondItem="hLV-Jq-pIa" secondAttribute="trailing" constant="16" id="VMB-ud-JIE"/>
                             <constraint firstItem="UCw-mA-RAU" firstAttribute="top" secondItem="xi3-4W-fDT" secondAttribute="bottom" constant="8" id="WUR-9o-7Bd"/>
+                            <constraint firstItem="EVN-8p-yfp" firstAttribute="trailing" secondItem="SO6-Gp-G0U" secondAttribute="trailing" constant="10" id="Wvy-h3-32X"/>
                             <constraint firstItem="hLV-Jq-pIa" firstAttribute="top" secondItem="xi3-4W-fDT" secondAttribute="bottom" constant="2" id="X5J-m2-u6V"/>
                             <constraint firstItem="8AC-Iu-S2H" firstAttribute="top" secondItem="EVN-8p-yfp" secondAttribute="top" constant="90" id="Y4A-dt-HS9"/>
                             <constraint firstAttribute="trailing" secondItem="4VI-St-r0r" secondAttribute="trailing" constant="16" id="ZIH-xf-O1W"/>
@@ -518,6 +528,7 @@
                             <constraint firstItem="hLV-Jq-pIa" firstAttribute="leading" secondItem="CTF-j7-EZt" secondAttribute="leading" constant="16" id="q6Z-zF-ZlD"/>
                             <constraint firstItem="xi3-4W-fDT" firstAttribute="top" secondItem="YKg-qx-cdd" secondAttribute="bottom" constant="5" id="qVj-Ea-5Gm"/>
                             <constraint firstItem="EVN-8p-yfp" firstAttribute="trailing" secondItem="UCw-mA-RAU" secondAttribute="trailing" id="qan-Bj-nWJ"/>
+                            <constraint firstItem="SO6-Gp-G0U" firstAttribute="top" secondItem="EVN-8p-yfp" secondAttribute="top" constant="3" id="wg0-or-ScW"/>
                         </constraints>
                     </view>
                     <connections>
@@ -529,6 +540,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PYN-kl-PXc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3475.36231884058" y="105.80357142857143"/>
+        </scene>
+        <!--Searcher View Controller-->
+        <scene sceneID="1Q9-GD-fdz">
+            <objects>
+                <viewController storyboardIdentifier="searchervc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vxv-tz-e6B" customClass="SearcherViewController" customModule="Movie_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hWx-p5-6u3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sri-tt-y55">
+                                <rect key="frame" x="10" y="64" width="394" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="U2M-Kv-DAV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="d9S-fd-It3">
+                                <rect key="frame" x="10" y="126" width="394" height="760"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="f5M-OM-m3j">
+                                        <rect key="frame" x="0.0" y="44.5" width="394" height="200"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="f5M-OM-m3j" id="oDZ-et-bd1">
+                                            <rect key="frame" x="0.0" y="0.0" width="394" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="iv7-yn-KwB"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <constraints>
+                            <constraint firstItem="sri-tt-y55" firstAttribute="leading" secondItem="iv7-yn-KwB" secondAttribute="leading" constant="10" id="44M-Ea-pa8"/>
+                            <constraint firstItem="iv7-yn-KwB" firstAttribute="trailing" secondItem="d9S-fd-It3" secondAttribute="trailing" constant="10" id="6OU-bd-yzT"/>
+                            <constraint firstItem="sri-tt-y55" firstAttribute="top" secondItem="iv7-yn-KwB" secondAttribute="top" constant="20" id="LKM-fb-Ffp"/>
+                            <constraint firstItem="d9S-fd-It3" firstAttribute="top" secondItem="sri-tt-y55" secondAttribute="bottom" constant="10" id="SSd-wA-mDn"/>
+                            <constraint firstAttribute="bottom" secondItem="d9S-fd-It3" secondAttribute="bottom" constant="10" id="dda-Oz-sEC"/>
+                            <constraint firstItem="iv7-yn-KwB" firstAttribute="trailing" secondItem="sri-tt-y55" secondAttribute="trailing" constant="10" id="jke-GV-CCJ"/>
+                            <constraint firstItem="d9S-fd-It3" firstAttribute="leading" secondItem="iv7-yn-KwB" secondAttribute="leading" constant="10" id="rzu-pl-EOu"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="movieSearchField" destination="sri-tt-y55" id="SDB-hh-JFp"/>
+                        <outlet property="movieSearchTableView" destination="d9S-fd-It3" id="Lob-G5-gFY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zhe-Yk-2uJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4324.6376811594209" y="105.80357142857143"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yNe-Jc-6SH">
@@ -559,6 +622,9 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
             <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

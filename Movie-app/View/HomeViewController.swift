@@ -21,7 +21,12 @@ class HomeViewController: UIViewController {
         trendingCollectionView.dataSource = self
         libraryCollectionView.dataSource = self
     }
+    @IBAction func addButtonTapped(_ sender: Any) {
+    
+    }
+  
 }
+
 
 // MARK: - UICollectionViewDataSource
 
