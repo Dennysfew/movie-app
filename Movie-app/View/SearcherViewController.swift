@@ -108,9 +108,13 @@ extension SearcherViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "movieDetailsvc") as! MovieDetailsViewController
+        vc.movie = movies[indexPath.row]
         
-        let url = "https://www.imdb.com/title/\(movies[indexPath.row].imdbID)/"
-        let vc = SFSafariViewController(url: URL(string: url)!)
+        
+//        let url = "https://www.imdb.com/title/\(movies[indexPath.row].imdbID)/"
+//        let vc = SFSafariViewController(url: URL(string: url)!)
         present(vc, animated: true)
         
     }
