@@ -98,9 +98,6 @@ extension SearcherViewController: UITableViewDataSource {
         let vc = storyboard.instantiateViewController(withIdentifier: "movieDetailsvc") as! MovieDetailsViewController
         vc.movie = movies[indexPath.row]
         
-        
-//        let url = "https://www.imdb.com/title/\(movies[indexPath.row].imdbID)/"
-//        let vc = SFSafariViewController(url: URL(string: url)!)
         present(vc, animated: true)
         
     }
