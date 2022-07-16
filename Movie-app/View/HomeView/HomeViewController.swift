@@ -13,7 +13,7 @@ class HomeViewController: UIViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).peristentContainer.viewContext
     var models = [Film]()
-    
+    var movieToLibrary = [MovieLibrary]()
     @IBOutlet weak var watchListCollectionView: UICollectionView!
     @IBOutlet weak var trendingCollectionView: UICollectionView!
     @IBOutlet weak var libraryCollectionView: UICollectionView!
@@ -36,7 +36,7 @@ class HomeViewController: UIViewController {
     func getAllItems() {
         do {
             models = try context.fetch(Film.fetchRequest())
-            
+            movieToLibrary = try context.fetch(MovieLibrary.fetchRequest())
         } catch {
             print("Not got any items")
         }
@@ -58,7 +58,7 @@ extension HomeViewController: UICollectionViewDataSource {
         }
         
         if (collectionView == libraryCollectionView ){
-            return movies.count
+            return movieToLibrary.count
         }
         
         
@@ -79,8 +79,11 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell2
         }
         if (collectionView == libraryCollectionView ){
-            let cell3 = libraryCollectionView.dequeueReusableCell(withReuseIdentifier: "LibraryCollectionViewCell", for: indexPath) as! LibraryCollectionViewCell
-            let movie3 = movies[indexPath.item]
+        let cell3 = libraryCollectionView.dequeueReusableCell(withReuseIdentifier: "LibraryCollectionViewCell", for: indexPath) as! LibraryCollectionViewCell
+        
+            self.getAllItems()
+            
+            let movie3 = movieToLibrary[indexPath.item]
             cell3.movie = movie3
             return cell3
         }
@@ -100,7 +103,13 @@ extension HomeViewController: UICollectionViewDelegate {
             vc.film = models[indexPath.row]
             show(vc, sender: true)
         }
-        
+        if (collectionView == libraryCollectionView ){
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "LibraryMovieSelectedDetailsvc") as! LibraryMovieSelectedDetailsViewController
+            self.getAllItems()
+            vc.film = movieToLibrary[indexPath.row]
+            show(vc, sender: true)
+        }
         if (collectionView == trendingCollectionView ){
             
         }
