@@ -47,5 +47,23 @@ class DataController: ObservableObject {
         save(context: context )
         
     }
- 
+    func addMovieToLibrary(moviePoster: String, movieName: String, imdbID: String, context: NSManagedObjectContext) {
+        let film = MovieLibrary(context: context)
+        film.id = UUID()
+        film.imdbID = imdbID
+        film.name = movieName
+        film.poster = moviePoster
+        
+        save(context: context )
+        
+        
+    }
+    func editMovieToLibrary(film: MovieLibrary, moviePoster: String, movieName: String, imdbID: String, context: NSManagedObjectContext) {
+        film.imdbID = imdbID
+        film.name = movieName
+        film.poster = moviePoster
+        
+        save(context: context )
+        
+    }
 }
