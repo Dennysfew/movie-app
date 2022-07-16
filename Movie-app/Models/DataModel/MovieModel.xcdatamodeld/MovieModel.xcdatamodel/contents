@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Film" representedClassName="Film" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="imdbID" optional="YES" attributeType="String" defaultValueString="t7775d"/>
+        <attribute name="name" optional="YES" attributeType="String" defaultValueString="No name"/>
+        <attribute name="poster" optional="YES" attributeType="String" defaultValueString="https://cdn-icons-png.flaticon.com/512/16/16057.png"/>
+    </entity>
+    <elements>
+        <element name="Film" positionX="-63" positionY="-18" width="128" height="89"/>
+    </elements>
+</model>
