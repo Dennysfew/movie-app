@@ -8,19 +8,19 @@
 import UIKit
 
 class MovieTableViewCell: UITableViewCell {
-
+    
     @IBOutlet var movieName: UILabel!
     @IBOutlet var moviePoster: UIImageView!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
     }
     static let identifier = "MovieTableViewCell"
     static func nib() -> UINib {
@@ -33,6 +33,6 @@ class MovieTableViewCell: UITableViewCell {
         if let data = try? Data(contentsOf: URL(string: url)!) {
             self.moviePoster.image = UIImage(data: data)
         }
-       
+        
     }
 }

@@ -10,7 +10,7 @@ import CoreData
 
 class HomeViewController: UIViewController {
     var movies = MovieResorce.ferchMovie()
-        
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).peristentContainer.viewContext
     var models = [Film]()
     
@@ -19,7 +19,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var libraryCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "iFilm"
         
         watchListCollectionView.dataSource = self
         trendingCollectionView.dataSource = self
@@ -30,18 +29,18 @@ class HomeViewController: UIViewController {
         getAllItems()
     }
     @IBAction func addButtonTapped(_ sender: Any) {
-    
+        
     }
     
-  
+    
     func getAllItems() {
-        do{
+        do {
             models = try context.fetch(Film.fetchRequest())
             
         } catch {
             print("Not got any items")
         }
-    
+        
     }
     
 }
@@ -67,7 +66,7 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     func collectionView( _ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell1 = watchListCollectionView.dequeueReusableCell(withReuseIdentifier: "WatchListCollectionViewCell", for: indexPath) as! WatchListCollectionViewCell
-     
+        
         self.getAllItems()
         let movie1 = models[indexPath.item]
         cell1.movie = movie1
@@ -86,12 +85,9 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell3
         }
         return cell1
-       
-
+     
     }
-   
-    
-    
+  
 }
 // MARK: - UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
@@ -102,17 +98,11 @@ extension HomeViewController: UICollectionViewDelegate {
             let vc = storyboard.instantiateViewController(withIdentifier: "watchListMovieSelectedDetailsvc") as! WatchListMovieSelectedDetailsViewController
             self.getAllItems()
             vc.film = models[indexPath.row]
-            
             show(vc, sender: true)
-
-
-
         }
-
+        
         if (collectionView == trendingCollectionView ){
-
-
-
+            
         }
     }
     

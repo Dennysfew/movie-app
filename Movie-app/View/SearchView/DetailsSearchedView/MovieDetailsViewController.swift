@@ -33,7 +33,7 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet var awardsLb: UILabel!
     @IBOutlet var imdbRatingLb: UILabel!
     let apiService: APIService = APIService()
-
+    
     var movie: Movie?
     
     var movieSelected: MovieSelected? {
@@ -78,29 +78,29 @@ class MovieDetailsViewController: UIViewController {
         
         
         guard let movie = movie else { return }
-              
+        
         apiService.fetchData(urlString: "https://www.omdbapi.com/?i=\(movie.imdbID)&apikey=479b27a7") { [weak self] value in
-                  guard let data = value else { return }
-                  
-                  do {
-                      
-                      let movieSelected = try JSONDecoder().decode(MovieSelected.self, from: data)
-                      
-                      DispatchQueue.main.async {
-                          
-                          self?.movieSelected = movieSelected
-                          
-                      }
-                  }
-                  catch {
-                      print(error)
-                      return
-                  }
-              }
-              
-          }
-
-
+            guard let data = value else { return }
+            
+            do {
+                
+                let movieSelected = try JSONDecoder().decode(MovieSelected.self, from: data)
+                
+                DispatchQueue.main.async {
+                    
+                    self?.movieSelected = movieSelected
+                    
+                }
+            }
+            catch {
+                print(error)
+                return
+            }
+        }
+        
+    }
+    
+    
 }
 
 

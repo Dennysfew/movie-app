@@ -76,7 +76,7 @@ class SearcherViewController: UIViewController, UITextFieldDelegate {
     
 }
 
-
+// MARK: - UITableViewDelegate
 extension SearcherViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
@@ -89,7 +89,7 @@ extension SearcherViewController: UITableViewDelegate {
     }
     
 }
-
+// MARK: - UITableViewDataSource
 extension SearcherViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

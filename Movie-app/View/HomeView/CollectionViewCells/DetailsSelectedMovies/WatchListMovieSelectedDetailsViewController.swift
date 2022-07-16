@@ -24,7 +24,7 @@ class WatchListMovieSelectedDetailsViewController: UIViewController {
     @IBOutlet var awardsLb: UILabel!
     @IBOutlet var imdbRatingLb: UILabel!
     let apiService: APIService = APIService()
-
+    
     var film: Film?
     
     var movieSelected: MovieSelected? {
@@ -94,9 +94,9 @@ class WatchListMovieSelectedDetailsViewController: UIViewController {
     }
     @IBAction func moreButtonTapped(_ sender: Any) {
         let url = "https://www.imdb.com/title/\(movieSelected!.imdbID)/"
-                let vc = SFSafariViewController(url: URL(string: url)!)
-                present(vc, animated: true)
-       
+        let vc = SFSafariViewController(url: URL(string: url)!)
+        present(vc, animated: true)
+        
     }
     @IBAction func backButtonTapped(_ sender: Any) {
         
