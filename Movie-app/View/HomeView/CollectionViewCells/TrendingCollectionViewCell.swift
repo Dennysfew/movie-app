@@ -11,15 +11,22 @@ class TrendingCollectionViewCell: UICollectionViewCell {
     @IBOutlet var movieName: UILabel!
     @IBOutlet var moviePoster: UIImageView!
     
-    var movie: MovieResorce! {
+    let apiService: APIService = APIService()
+    
+    var movie: TrendingMovie! {
         didSet {
             self.updateUI()
         }
     }
+    
     func updateUI() {
         if let movie = movie {
-            moviePoster.image = movie.moviePoster
-            movieName.text = movie.movieName
+            
+            
+            if let data = try? Data(contentsOf: URL(string: "https://image.tmdb.org/t/p/original\(movie.poster_path)")!) {
+                self.moviePoster.image = UIImage(data: data)
+            }
+            self.movieName.text = movie.original_title
         } else {
             moviePoster.image = nil
             movieName.text = nil

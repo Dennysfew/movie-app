@@ -10,16 +10,19 @@ import Foundation
 struct MovieResult: Codable {
     let Search: [Movie]
 }
+struct TrendingMovieResult: Codable {
+    let Search: Movie
+}
 
 struct Movie: Codable {
-    let Title: String
-    let Year: String
+    let title: String
+    let year: String
     let imdbID: String
-    let _Type: String
-    let Poster: String
+    let type: String
+    let poster: String
     
     private enum CodingKeys: String, CodingKey {
-        case Title, Year, imdbID, _Type = "Type", Poster
+        case title = "Title", year = "Year", imdbID, type = "Type", poster = "Poster"
     }
     
 }

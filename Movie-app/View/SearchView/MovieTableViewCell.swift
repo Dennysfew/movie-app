@@ -28,8 +28,8 @@ class MovieTableViewCell: UITableViewCell {
         
     }
     func configure(with model: Movie) {
-        self.movieName.text = model.Title
-        let url = model.Poster
+        self.movieName.text = model.title
+        let url = model.poster
         if let data = try? Data(contentsOf: URL(string: url)!) {
             self.moviePoster.image = UIImage(data: data)
         }

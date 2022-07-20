@@ -1,33 +1,16 @@
 //
-//  MovieDetailsViewController.swift
+//  TrendingListMovieSelectedDetailsViewController.swift
 //  Movie-app
 //
-//  Created by Denys on 13.07.2022.
+//  Created by Denys on 18.07.2022.
 //
+
+
 
 import UIKit
 import CoreData
-class MovieDetailsViewController: UIViewController {
-    let context = (UIApplication.shared.delegate as! AppDelegate).peristentContainer.viewContext
-    let dataController: DataController = DataController()
-    @IBAction func addToWatchListButtonTapped(_ sender: Any) {
-        
-        dataController.addMovie(moviePoster: movieSelected!.Poster , movieName: movieSelected?.Title ?? "", imdbID: movieSelected?.imdbID ?? "", context: context)
-        
-        let homeViewController = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? HomeViewController
-        
-        view.window?.rootViewController = homeViewController
-        view.window?.makeKeyAndVisible()
-    }
-    @IBAction func addToLibraryListButtonTapped(_ sender: Any) {
-        
-        dataController.addMovieToLibrary(moviePoster: movieSelected!.Poster , movieName: movieSelected?.Title ?? "", imdbID: movieSelected?.imdbID ?? "", context: context)
-        
-        let homeViewController = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? HomeViewController
-        
-        view.window?.rootViewController = homeViewController
-        view.window?.makeKeyAndVisible()
-    }
+import SafariServices
+class TrendingListMovieSelectedDetailsViewController: UIViewController {
     @IBOutlet var movieName: UILabel!
     @IBOutlet var moviePoster: UIImageView!
     @IBOutlet var runtimeLb: UILabel!
@@ -40,9 +23,36 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet var countryLb: UILabel!
     @IBOutlet var awardsLb: UILabel!
     @IBOutlet var imdbRatingLb: UILabel!
-    let apiService: APIService = APIService()
     
-    var movie: Movie?
+    let apiService: APIService = APIService()
+    var trendyMovieOriginalTitle: String!
+    var trendyMovieImdbID = "No id"
+    
+    var trendingMovieSelected: [Movie]? {
+        didSet{
+            self.trendyMovieImdbID = self.trendingMovieSelected![0].imdbID
+            
+            apiService.fetchData(urlString: "https://www.omdbapi.com/?i=\(trendyMovieImdbID)&apikey=479b27a7") { [weak self] value in
+                guard let data = value else { return }
+                
+                do {
+                    
+                    let movieSelected = try JSONDecoder().decode(MovieSelected.self, from: data)
+                    
+                    DispatchQueue.main.async {
+                        
+                        self?.movieSelected = movieSelected
+                        
+                    }
+                }
+                catch {
+                    print(error)
+                    return
+                }
+            }
+        }
+    }
+    
     
     var movieSelected: MovieSelected? {
         didSet{
@@ -81,22 +91,25 @@ class MovieDetailsViewController: UIViewController {
             }
         }
     }
-    override func viewDidLoad() {
+    override func viewDidLoad()  {
         super.viewDidLoad()
         
+        let query = trendyMovieOriginalTitle.replacingOccurrences(of: " ", with: "%20")
         
-        guard let movie = movie else { return }
         
-        apiService.fetchData(urlString: "https://www.omdbapi.com/?i=\(movie.imdbID)&apikey=479b27a7") { [weak self] value in
+        let urlDetails = "https://www.omdbapi.com/?apikey=3aea79ac&s=\(query)&type=movie"
+        
+        apiService.fetchData(urlString: urlDetails) { [weak self] value in
             guard let data = value else { return }
             
             do {
                 
-                let movieSelected = try JSONDecoder().decode(MovieSelected.self, from: data)
+                let trendingMoviesSelected = try JSONDecoder().decode(MovieResult.self, from: data)
+                
                 
                 DispatchQueue.main.async {
                     
-                    self?.movieSelected = movieSelected
+                    self?.trendingMovieSelected = trendingMoviesSelected.Search
                     
                 }
             }
@@ -105,9 +118,14 @@ class MovieDetailsViewController: UIViewController {
                 return
             }
         }
+    
+    }
+    @IBAction func moreButtonTapped(_ sender: Any) {
+        let url = "https://www.imdb.com/title/\(trendyMovieImdbID ?? "")/"
+        let vc = SFSafariViewController(url: URL(string: url)!)
+        present(vc, animated: true)
         
     }
-    
     @IBAction func backButtonTapped(_ sender: Any) {
         
         transitionToHomeScreen()
@@ -119,5 +137,3 @@ class MovieDetailsViewController: UIViewController {
         view.window?.makeKeyAndVisible()
     }
 }
-
-
