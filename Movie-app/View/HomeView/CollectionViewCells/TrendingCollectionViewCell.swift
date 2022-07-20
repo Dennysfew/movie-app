@@ -11,11 +11,14 @@ class TrendingCollectionViewCell: UICollectionViewCell {
     @IBOutlet var movieName: UILabel!
     @IBOutlet var moviePoster: UIImageView!
     
+    let apiService: APIService = APIService()
+    
     var movie: TrendingMovie! {
         didSet {
             self.updateUI()
         }
     }
+    
     func updateUI() {
         if let movie = movie {
             
@@ -24,9 +27,6 @@ class TrendingCollectionViewCell: UICollectionViewCell {
                 self.moviePoster.image = UIImage(data: data)
             }
             self.movieName.text = movie.original_title
-            
-            
-            
         } else {
             moviePoster.image = nil
             movieName.text = nil

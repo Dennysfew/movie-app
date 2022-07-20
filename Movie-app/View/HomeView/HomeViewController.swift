@@ -58,15 +58,6 @@ class HomeViewController: UIViewController {
             
         }).resume()
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
     @IBAction func addButtonTapped(_ sender: Any) {
         
@@ -101,7 +92,6 @@ extension HomeViewController: UICollectionViewDataSource {
             return movieToLibrary.count
         }
         
-        
         return models.count
     }
     func collectionView( _ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -119,8 +109,8 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell2
         }
         if (collectionView == libraryCollectionView ){
-        let cell3 = libraryCollectionView.dequeueReusableCell(withReuseIdentifier: "LibraryCollectionViewCell", for: indexPath) as! LibraryCollectionViewCell
-        
+            let cell3 = libraryCollectionView.dequeueReusableCell(withReuseIdentifier: "LibraryCollectionViewCell", for: indexPath) as! LibraryCollectionViewCell
+            
             self.getAllItems()
             
             let movie3 = movieToLibrary[indexPath.item]
@@ -128,9 +118,9 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell3
         }
         return cell1
-     
+        
     }
-  
+    
 }
 // MARK: - UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
@@ -151,7 +141,10 @@ extension HomeViewController: UICollectionViewDelegate {
             show(vc, sender: true)
         }
         if (collectionView == trendingCollectionView ){
-            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "trendingListMovieSelectedDetailsvc") as! TrendingListMovieSelectedDetailsViewController
+            vc.trendyMovieOriginalTitle = trendingMovies[indexPath.item].original_title
+            show(vc, sender: true)
         }
     }
     
