@@ -27,17 +27,4 @@ final class APIService: NSObject {
         dataTask.resume()
     }
     
-    func fetchImage(urlString: String, completion: ((UIImage?) -> Void)?) {
-        guard let url = URL(string: urlString) else {
-            print("url invalid")
-            return
-        }
-        let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: url) { (data, response, error) in
-            
-            completion?(UIImage(data: data!))
-        }
-        task.resume()
-    }
-    
 }

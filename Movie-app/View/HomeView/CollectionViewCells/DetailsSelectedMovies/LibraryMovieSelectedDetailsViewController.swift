@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import SafariServices
 class LibraryMovieSelectedDetailsViewController: UIViewController {
-    let dataController: DataController = DataController()
+    let dataController: MovieDataController = MovieDataController()
     let context = (UIApplication.shared.delegate as! AppDelegate).peristentContainer.viewContext
     @IBOutlet var movieName: UILabel!
     @IBOutlet var moviePoster: UIImageView!
@@ -31,16 +31,16 @@ class LibraryMovieSelectedDetailsViewController: UIViewController {
     var movieSelected: MovieSelected? {
         didSet{
             
-            guard let movieName = movieSelected?.Title else { return }
-            guard let runtime = movieSelected?.Runtime else { return }
-            guard let genre = movieSelected?.Genre else { return }
-            guard let plot = movieSelected?.Plot else { return }
-            guard let writer = movieSelected?.Writer else { return }
-            guard let actors = movieSelected?.Actors else { return }
-            guard let director = movieSelected?.Director else { return }
-            guard let language = movieSelected?.Language else { return }
-            guard let country = movieSelected?.Country else { return }
-            guard let awards = movieSelected?.Awards else { return }
+            guard let movieName = movieSelected?.title else { return }
+            guard let runtime = movieSelected?.runtime else { return }
+            guard let genre = movieSelected?.genre else { return }
+            guard let plot = movieSelected?.plot else { return }
+            guard let writer = movieSelected?.writer else { return }
+            guard let actors = movieSelected?.actors else { return }
+            guard let director = movieSelected?.director else { return }
+            guard let language = movieSelected?.language else { return }
+            guard let country = movieSelected?.country else { return }
+            guard let awards = movieSelected?.awards else { return }
             guard let imdbRating = movieSelected?.imdbRating else { return }
             
             DispatchQueue.main.async {
@@ -58,7 +58,7 @@ class LibraryMovieSelectedDetailsViewController: UIViewController {
                 
             }
             
-            guard let posterImageUrl = movieSelected?.Poster else { return }
+            guard let posterImageUrl = movieSelected?.poster else { return }
             
             if let data = try? Data(contentsOf: URL(string: posterImageUrl)!) {
                 self.moviePoster.image = UIImage(data: data)

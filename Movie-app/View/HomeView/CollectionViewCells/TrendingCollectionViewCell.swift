@@ -23,10 +23,10 @@ class TrendingCollectionViewCell: UICollectionViewCell {
         if let movie = movie {
             
             
-            if let data = try? Data(contentsOf: URL(string: "https://image.tmdb.org/t/p/original\(movie.poster_path)")!) {
+            if let data = try? Data(contentsOf: URL(string: "https://image.tmdb.org/t/p/original\(movie.posterPath)")!) {
                 self.moviePoster.image = UIImage(data: data)
             }
-            self.movieName.text = movie.original_title
+            self.movieName.text = movie.originalTitle
         } else {
             moviePoster.image = nil
             movieName.text = nil

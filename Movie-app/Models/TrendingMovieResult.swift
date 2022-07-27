@@ -12,11 +12,11 @@ struct TrendingMovieResults: Codable {
 }
 
 struct TrendingMovie: Codable {
-    let original_title: String
-    let poster_path: String
+    let originalTitle: String
+    let posterPath: String
     
     private enum CodingKeys: String, CodingKey {
-        case original_title, poster_path
+        case originalTitle = "original_title", posterPath = "poster_path"
     }
     
 }

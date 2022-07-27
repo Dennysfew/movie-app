@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class DataController: ObservableObject {
+class MovieDataController: ObservableObject {
     let container = NSPersistentContainer(name: "MovieModel")
     
     init() {
@@ -28,7 +28,7 @@ class DataController: ObservableObject {
             print("We cound not save the data.... ")
         }
     }
-    func addMovie(moviePoster: String, movieName: String, imdbID: String, context: NSManagedObjectContext) {
+    func addMovieToWatchList(moviePoster: String, movieName: String, imdbID: String, context: NSManagedObjectContext) {
         let film = Film (context: context)
         film.id = UUID()
         film.imdbID = imdbID
@@ -39,14 +39,7 @@ class DataController: ObservableObject {
         
         
     }
-    func editMovie(film: Film, moviePoster: String, movieName: String, imdbID: String, context: NSManagedObjectContext) {
-        film.imdbID = imdbID
-        film.name = movieName
-        film.poster = moviePoster
-        
-        save(context: context )
-        
-    }
+
     func addMovieToLibrary(moviePoster: String, movieName: String, imdbID: String, context: NSManagedObjectContext) {
         let film = MovieLibrary(context: context)
         film.id = UUID()
@@ -58,12 +51,5 @@ class DataController: ObservableObject {
         
         
     }
-    func editMovieToLibrary(film: MovieLibrary, moviePoster: String, movieName: String, imdbID: String, context: NSManagedObjectContext) {
-        film.imdbID = imdbID
-        film.name = movieName
-        film.poster = moviePoster
-        
-        save(context: context )
-        
-    }
+
 }

@@ -8,24 +8,24 @@
 import Foundation
 
 struct MovieSelected: Codable {
-    let Title: String
-    let Year: String
+    let title: String
+    let year: String
     let imdbID: String
-    let _Type: String
-    let Poster: String
-    let Runtime: String
-    let Genre: String
-    let Director: String
-    let Writer: String
-    let Actors: String
-    let Plot: String
-    let Language: String
-    let Country: String
-    let Awards: String
+    let type: String
+    let poster: String
+    let runtime: String
+    let genre: String
+    let director: String
+    let writer: String
+    let actors: String
+    let plot: String
+    let language: String
+    let country: String
+    let awards: String
     let imdbRating: String
     
     private enum CodingKeys: String, CodingKey {
-        case Title, Year, imdbID, _Type = "Type", Poster, Runtime, Genre, Director, Writer, Actors, Plot, Language, Country, Awards, imdbRating
+        case title = "Title",year = "Year", imdbID, type = "Type", poster = "Poster", runtime = "Runtime", genre = "Genre", director = "Director", writer = "Writer", actors = "Actors", plot = "Plot", language = "Language", country = "Country", awards = "Awards", imdbRating
     }
     
 }

@@ -9,10 +9,10 @@ import UIKit
 import CoreData
 class MovieDetailsViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).peristentContainer.viewContext
-    let dataController: DataController = DataController()
+    let dataController: MovieDataController = MovieDataController()
     @IBAction func addToWatchListButtonTapped(_ sender: Any) {
         
-        dataController.addMovie(moviePoster: movieSelected!.Poster , movieName: movieSelected?.Title ?? "", imdbID: movieSelected?.imdbID ?? "", context: context)
+        dataController.addMovieToWatchList(moviePoster: movieSelected!.poster , movieName: movieSelected?.title ?? "", imdbID: movieSelected?.imdbID ?? "", context: context)
         
         let homeViewController = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? HomeViewController
         
@@ -21,7 +21,7 @@ class MovieDetailsViewController: UIViewController {
     }
     @IBAction func addToLibraryListButtonTapped(_ sender: Any) {
         
-        dataController.addMovieToLibrary(moviePoster: movieSelected!.Poster , movieName: movieSelected?.Title ?? "", imdbID: movieSelected?.imdbID ?? "", context: context)
+        dataController.addMovieToLibrary(moviePoster: movieSelected!.poster , movieName: movieSelected?.title ?? "", imdbID: movieSelected?.imdbID ?? "", context: context)
         
         let homeViewController = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? HomeViewController
         
@@ -47,16 +47,16 @@ class MovieDetailsViewController: UIViewController {
     var movieSelected: MovieSelected? {
         didSet{
             
-            guard let movieName = movieSelected?.Title else { return }
-            guard let runtime = movieSelected?.Runtime else { return }
-            guard let genre = movieSelected?.Genre else { return }
-            guard let plot = movieSelected?.Plot else { return }
-            guard let writer = movieSelected?.Writer else { return }
-            guard let actors = movieSelected?.Actors else { return }
-            guard let director = movieSelected?.Director else { return }
-            guard let language = movieSelected?.Language else { return }
-            guard let country = movieSelected?.Country else { return }
-            guard let awards = movieSelected?.Awards else { return }
+            guard let movieName = movieSelected?.title else { return }
+            guard let runtime = movieSelected?.runtime else { return }
+            guard let genre = movieSelected?.genre else { return }
+            guard let plot = movieSelected?.plot else { return }
+            guard let writer = movieSelected?.writer else { return }
+            guard let actors = movieSelected?.actors else { return }
+            guard let director = movieSelected?.director else { return }
+            guard let language = movieSelected?.language else { return }
+            guard let country = movieSelected?.country else { return }
+            guard let awards = movieSelected?.awards else { return }
             guard let imdbRating = movieSelected?.imdbRating else { return }
             
             DispatchQueue.main.async {
@@ -74,7 +74,7 @@ class MovieDetailsViewController: UIViewController {
                 
             }
             
-            guard let posterImageUrl = movieSelected?.Poster else { return }
+            guard let posterImageUrl = movieSelected?.poster else { return }
             
             if let data = try? Data(contentsOf: URL(string: posterImageUrl)!) {
                 self.moviePoster.image = UIImage(data: data)

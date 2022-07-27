@@ -27,8 +27,7 @@ class LibraryCollectionViewCell: UICollectionViewCell {
             moviePoster.image = nil
             movieName.text = nil
         }
-        
-        
+ 
         moviePoster.layer.cornerRadius = 5.0
         moviePoster.layer.masksToBounds = true
     }

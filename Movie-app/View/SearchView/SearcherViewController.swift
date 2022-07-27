@@ -61,7 +61,7 @@ class SearcherViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             // Update our movie array
-            let newMovies = finalResult.Search
+            let newMovies = finalResult.search
             self.movies.append(contentsOf: newMovies)
             
             DispatchQueue.main.async {

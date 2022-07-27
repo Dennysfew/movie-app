@@ -8,10 +8,18 @@
 import Foundation
 
 struct MovieResult: Codable {
-    let Search: [Movie]
+    let search: [Movie]
+    
+    private enum CodingKeys: String, CodingKey {
+        case search = "Search"
+    }
 }
 struct TrendingMovieResult: Codable {
-    let Search: Movie
+    let search: Movie
+    
+    private enum CodingKeys: String, CodingKey {
+        case search = "Search"
+    }
 }
 
 struct Movie: Codable {

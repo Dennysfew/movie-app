@@ -9,7 +9,6 @@ import UIKit
 import CoreData
 
 class HomeViewController: UIViewController {
-    var movies = MovieResorce.ferchMovie()
     var trendingMovies = [TrendingMovie]()
     let apiService: APIService = APIService()
     let context = (UIApplication.shared.delegate as! AppDelegate).peristentContainer.viewContext
@@ -95,24 +94,21 @@ extension HomeViewController: UICollectionViewDataSource {
         return models.count
     }
     func collectionView( _ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell1 = watchListCollectionView.dequeueReusableCell(withReuseIdentifier: "WatchListCollectionViewCell", for: indexPath) as! WatchListCollectionViewCell
-        
+        let cell1 = watchListCollectionView.dequeueReusableCell(withReuseIdentifier: Constants.CollectionViewCell.watchListCollectionViewCell, for: indexPath) as! WatchListCollectionViewCell
         self.getAllItems()
         let movie1 = models[indexPath.item]
         cell1.movie = movie1
         
         
         if (collectionView == trendingCollectionView) {
-            let cell2 = trendingCollectionView.dequeueReusableCell(withReuseIdentifier: "TrendingCollectionViewCell", for: indexPath) as! TrendingCollectionViewCell
+            let cell2 = trendingCollectionView.dequeueReusableCell(withReuseIdentifier: Constants.CollectionViewCell.trendingCollectionViewCell, for: indexPath) as! TrendingCollectionViewCell
             let movie2 = trendingMovies[indexPath.item]
             cell2.movie = movie2
             return cell2
         }
         if (collectionView == libraryCollectionView ){
-            let cell3 = libraryCollectionView.dequeueReusableCell(withReuseIdentifier: "LibraryCollectionViewCell", for: indexPath) as! LibraryCollectionViewCell
-            
+            let cell3 = libraryCollectionView.dequeueReusableCell(withReuseIdentifier: Constants.CollectionViewCell.libraryCollectionViewCell, for: indexPath) as! LibraryCollectionViewCell
             self.getAllItems()
-            
             let movie3 = movieToLibrary[indexPath.item]
             cell3.movie = movie3
             return cell3
@@ -128,22 +124,22 @@ extension HomeViewController: UICollectionViewDelegate {
         self.getAllItems()
         if (collectionView == watchListCollectionView ){
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "watchListMovieSelectedDetailsvc") as! WatchListMovieSelectedDetailsViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.watchListMovieSelectedDetailsViewController) as! WatchListMovieSelectedDetailsViewController
             self.getAllItems()
             vc.film = models[indexPath.row]
             show(vc, sender: true)
         }
         if (collectionView == libraryCollectionView ){
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "LibraryMovieSelectedDetailsvc") as! LibraryMovieSelectedDetailsViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.libraryMovieSelectedDetailsViewController) as! LibraryMovieSelectedDetailsViewController
             self.getAllItems()
             vc.film = movieToLibrary[indexPath.row]
             show(vc, sender: true)
         }
         if (collectionView == trendingCollectionView ){
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "trendingListMovieSelectedDetailsvc") as! TrendingListMovieSelectedDetailsViewController
-            vc.trendyMovieOriginalTitle = trendingMovies[indexPath.item].original_title
+            let vc = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.trendingListMovieSelectedDetailsViewController) as! TrendingListMovieSelectedDetailsViewController
+            vc.trendyMovieOriginalTitle = trendingMovies[indexPath.item].originalTitle
             show(vc, sender: true)
         }
     }
